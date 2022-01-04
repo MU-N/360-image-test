@@ -6,6 +6,9 @@ public class CameraRotaion : MonoBehaviour
 {
 #if UNITY_EDITOR
 
+    [SerializeField] LayerMask interactablesLayer;
+
+
     bool isDragging = false;
 
     float startMouseX;
@@ -13,6 +16,8 @@ public class CameraRotaion : MonoBehaviour
 
     Camera cam;
 
+    Ray ray;
+    RaycastHit hit;
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -23,16 +28,35 @@ public class CameraRotaion : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isDragging)
         {
-            
-            isDragging = true;
 
+            isDragging = true;
             startMouseX = Input.mousePosition.x;
             startMouseY = Input.mousePosition.y;
         }
         else if (Input.GetMouseButtonUp(0) && isDragging)
         {
             isDragging = false;
+           
         }
+
+        // -------------------- for hover --------------------- //
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        if (Physics.Raycast(ray, out hit, interactablesLayer))
+        {
+            if (hit.collider.gameObject.GetComponent<IIntractable>() == null)
+                return;
+
+            hit.collider.gameObject.GetComponent<IIntractable>().Hover();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                
+                hit.collider.gameObject.GetComponent<IIntractable>().Interact();
+            }
+        }
+
+
     }
 
     void LateUpdate()
@@ -48,7 +72,7 @@ public class CameraRotaion : MonoBehaviour
             float newCenterX = Screen.width / 2 + diffX;
             float newCenterY = Screen.height / 2 + diffY;
 
-            Vector3 LookHerePoint = cam.ScreenToWorldPoint(new Vector3(newCenterX, newCenterY , cam.nearClipPlane));
+            Vector3 LookHerePoint = cam.ScreenToWorldPoint(new Vector3(newCenterX, newCenterY, cam.nearClipPlane));
 
             transform.LookAt(LookHerePoint);
 

@@ -35,7 +35,6 @@ public class AudioManager : MonoBehaviour
             sound.source.outputAudioMixerGroup = sound.mixer;
         }
 
-        Play("Theme");
     }
 
     public void Play(string name)
@@ -45,6 +44,8 @@ public class AudioManager : MonoBehaviour
         {
             if (!snd.source.isPlaying)
                 snd.source.Play();
+            else
+                snd.source.Stop();
         }
         catch (Exception e)
         {
