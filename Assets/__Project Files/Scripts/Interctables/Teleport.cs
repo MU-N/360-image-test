@@ -40,11 +40,12 @@ public class Teleport : MonoBehaviour,IIntractable
 
     }
 
-    public void Interact()
+    public GameObject Interact()
     {
         playMusic.Raise();
 
-        //todo Teleport
+        //todo Teleport 
+        
     }
 
 
