@@ -2,7 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class Cortana : MonoBehaviour , IIntractable
+public class Teleport : MonoBehaviour,IIntractable
 {
     [Header("Music Event")]
     [SerializeField] GameEvent playMusic;
@@ -27,7 +27,7 @@ public class Cortana : MonoBehaviour , IIntractable
         if (!isHover)
         {
             isHover = true;
-            transform.DOScale(localScale *1.5f, .25f).SetEase(Ease.OutBounce).SetLoops(1); 
+            transform.DOScale(localScale * 1.5f, .25f).SetEase(Ease.OutBounce).SetLoops(1);
             StartCoroutine(WaitForsec());
         }
     }
@@ -37,14 +37,14 @@ public class Cortana : MonoBehaviour , IIntractable
         transform.DOScale(localScale, .25f).SetEase(Ease.OutBounce).SetLoops(1);
 
         isHover = false;
-        
+
     }
 
     public void Interact()
     {
         playMusic.Raise();
 
-        cortanaObject.transform.transform.DOScale(localScale * 1.5f, 1f).SetEase(Ease.InBounce).SetLoops(4, LoopType.Yoyo);
+        //todo Teleport
     }
 
 
@@ -54,5 +54,4 @@ public class Cortana : MonoBehaviour , IIntractable
         EndHover();
 
     }
-
 }
