@@ -27,7 +27,7 @@ public class PlayStopButton : MonoBehaviour, IIntractable
         if (!isHover)
         {
             isHover = true;
-            transform.DOScale(localScale * 2, .25f).SetEase(Ease.OutBounce).SetLoops(1);
+            transform.DOScale(localScale * 1.5f, .25f).SetEase(Ease.OutBounce).SetLoops(1);
             StartCoroutine(WaitForsec());
         }
     }

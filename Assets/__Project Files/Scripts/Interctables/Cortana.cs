@@ -2,15 +2,12 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class Cortana : MonoBehaviour,IIntractable
+public class Cortana : MonoBehaviour , IIntractable
 {
-    [SerializeField] GameObject[] cortanaObjects;
     [Header("Music Event")]
     [SerializeField] GameEvent playMusic;
-    [Header("Rotaion")]
-    [SerializeField] Vector3 targetRotation;
 
-
+    GameObject cortanaObject;
 
     Vector3 localScale;
     bool isHover = false;
@@ -22,6 +19,7 @@ public class Cortana : MonoBehaviour,IIntractable
     void Start()
     {
         localScale = transform.localScale;
+        cortanaObject = transform.GetChild(0).gameObject;
     }
 
     public void Hover()
@@ -29,7 +27,7 @@ public class Cortana : MonoBehaviour,IIntractable
         if (!isHover)
         {
             isHover = true;
-            transform.DOScale(localScale, .25f).SetEase(Ease.OutBounce).SetLoops(1); 
+            transform.DOScale(localScale *1.5f, .25f).SetEase(Ease.OutBounce).SetLoops(1); 
             StartCoroutine(WaitForsec());
         }
     }
@@ -39,6 +37,7 @@ public class Cortana : MonoBehaviour,IIntractable
         transform.DOScale(localScale, .25f).SetEase(Ease.OutBounce).SetLoops(1);
 
         isHover = false;
+        
     }
 
     public void Interact()
@@ -50,8 +49,7 @@ public class Cortana : MonoBehaviour,IIntractable
 
     private void UpdateButtonVisuals()
     {
-        cortanaObjects[currentIndex].transform.DORotate(targetRotation, 1.75f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
-        cortanaObjects[currentIndex].transform.DORotate(-1 * targetRotation, 1.75f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
+        cortanaObject.transform.transform.DOScale(localScale * 1.5f, 1f).SetEase(Ease.InBounce).SetLoops(4,LoopType.Yoyo);
 
     }
 
