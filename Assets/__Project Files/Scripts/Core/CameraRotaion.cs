@@ -18,6 +18,7 @@ public class CameraRotaion : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+    private  Vector3 tpLocation = new Vector3(250,0,0);  
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -42,7 +43,7 @@ public class CameraRotaion : MonoBehaviour
         // -------------------- for hover --------------------- //
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        if (Physics.Raycast(ray, out hit, interactablesLayer))
+        if (Physics.Raycast(ray, out hit, 1000f, interactablesLayer))
         {
             if (hit.collider.gameObject.GetComponent<IIntractable>() == null)
                 return;
@@ -53,6 +54,10 @@ public class CameraRotaion : MonoBehaviour
             {
                 
                 hit.collider.gameObject.GetComponent<IIntractable>().Interact();
+                if(hit.collider.gameObject.CompareTag("Teleport"))
+                {
+                    transform.position = tpLocation;
+                }
             }
         }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour,IIntractable
 {
-    [Header("Music Event")]
-    [SerializeField] GameEvent playMusic;
+   // [Header("Music Event")]
+    //[SerializeField] GameEvent telport;
 
     GameObject cortanaObject;
 
@@ -40,9 +40,9 @@ public class Teleport : MonoBehaviour,IIntractable
 
     }
 
-    public GameObject Interact()
+    public void Interact()
     {
-        playMusic.Raise();
+        //telport.Raise();
 
         //todo Teleport 
         
