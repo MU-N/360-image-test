@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraRotaion : MonoBehaviour
 {
@@ -84,6 +85,18 @@ public class CameraRotaion : MonoBehaviour
             startMouseX = endMouseX;
             startMouseY = endMouseY;
         }
+    }
+
+    public void MovePlayerX(int x  )
+    {
+        Vector3 localPos = transform.position + new Vector3(x, 0, 0);
+       
+        transform.DOMove(localPos, .25f).SetEase(Ease.InOutSine);
+    }
+    public void MovePlayerZ(int z  )
+    {
+        Vector3 localPos = transform.position + new Vector3(0, 0, z);
+        transform.DOMove(localPos, .25f).SetEase(Ease.InOutSine);
     }
 
 #endif
