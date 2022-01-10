@@ -1,1 +1,1 @@
-# VR-360-test
+# 360 image test
