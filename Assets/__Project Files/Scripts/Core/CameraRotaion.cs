@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CameraRotaion : MonoBehaviour
 {
-#if UNITY_EDITOR
+
 
     [SerializeField] LayerMask interactablesLayer;
 
@@ -19,7 +19,9 @@ public class CameraRotaion : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
-    private  Vector3 tpLocation = new Vector3(250,0,0);  
+
+    const string teleport = "Teleport";
+
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -54,10 +56,10 @@ public class CameraRotaion : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 
-                hit.collider.gameObject.GetComponent<IIntractable>().Interact();
-                if(hit.collider.gameObject.CompareTag("Teleport"))
+               var teleport =  hit.collider.gameObject.GetComponent<Teleport>();
+                if(teleport)
                 {
-                    transform.position = tpLocation;
+                    transform.position = teleport.teleportLocation.position;
                 }
             }
         }
@@ -99,5 +101,4 @@ public class CameraRotaion : MonoBehaviour
         transform.DOMove(localPos, .25f).SetEase(Ease.InOutSine);
     }
 
-#endif
 }

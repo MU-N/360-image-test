@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/__Project Files/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/__Project Files/Scenes/360 Photo Sphere.unity
+    guid: be911246bd165ef4fa51d96841c054cf
   m_configObjects: {}

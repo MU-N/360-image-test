@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour,IIntractable
 {
-   // [Header("Music Event")]
-    //[SerializeField] GameEvent telport;
 
-    GameObject cortanaObject;
+
+    [SerializeField] public Transform teleportLocation;
 
     Vector3 localScale;
     bool isHover = false;
-    int currentIndex = 0;
 
 
     WaitForSeconds waitForSeconds = new WaitForSeconds(.5f);
@@ -19,7 +17,6 @@ public class Teleport : MonoBehaviour,IIntractable
     void Start()
     {
         localScale = transform.localScale;
-        cortanaObject = transform.GetChild(0).gameObject;
     }
 
     public void Hover()
@@ -42,10 +39,7 @@ public class Teleport : MonoBehaviour,IIntractable
 
     public void Interact()
     {
-        //telport.Raise();
-
-        //todo Teleport 
-        
+                
     }
 
 
